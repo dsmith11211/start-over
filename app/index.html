@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>pointTracker</title>
+    <title>StartOver</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico">
@@ -31,7 +31,11 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <span class="site-title">Startov.er : The Failed Startup Idea Generator</span>
+            <div class="site-title-wrap">
+              <div class="site-title">start</div>
+              <div class="site-title-after">over</div>
+              <span class="site-title-post"> The Failed Startup Idea Generator</span>
+            </div>
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav pull-right">
@@ -44,33 +48,53 @@
 
     <div class="container jumbo-wrapper">
         <div class="jumbotron">
-            <h1 data-bind = "text: startupProductName"></h1>
+            <h1 class = "jumbo-custom-font" data-bind = "text: startupProductName"></h1>
             <p data-bind = "text: tagLine()" class="lead"></p>
             <p><a data-bind="click: startOver" class="btn btn-lg btn-success" href="#" role="button">Start Over</a>
             </p>
         </div>
         <div class="container marketing">
           <div class="row">
-            <!-- <div data-bind="{ template: 'cards-template', with: employeeCards }" class="emp-container"></div> -->
-
             <h2 class="text-center team-header"> Meet the <span data-bind = "text: startupProductName()"></span> Team </h2>
-
-            <!-- ko foreach: employeeCards -->
-            <div class="col-lg-4">
-                <img data-bind = "attr: {src: avatar}" class="img-circle center-block" alt="A great culture-fit" style="width: 140px; height: 140px;"/>
-                <h4 class="team-names" data-bind = "text: name"></h4>
-                <p class="text-center"  data-bind = "text: title()"></p>
-                <!-- <p><a class="btn btn-default" href="#" role="button">View details »</a>
-                </p> -->
-            </div>
-            <!-- /ko -->
-
           </div>
+          
+          <!-- ko if: numOfRows() > 1 -->
+            <div data-bind="foreach: employeeCards" class="row">
+              <div data-bind="if:($index() < $root.numOfRows())">
+                  <div class="col-lg-4">
+                      <img data-bind = "attr: {src: avatar}" class="img-circle center-block" alt="A great culture-fit" style="width: 140px; height: 140px;"/>
+                      <h4 class="team-names" data-bind = "text: name"></h4>
+                      <p class="text-center"  data-bind = "text: title()"></p>
+                  </div>
+              </div>
+            </div>
+            <div data-bind="foreach: employeeCards" class="row">
+              <div data-bind="if:($index() >= $root.numOfRows())">
+                  <div class="col-lg-4">
+                      <img data-bind = "attr: {src: avatar}" class="img-circle center-block" alt="A great culture-fit" style="width: 140px; height: 140px;"/>
+                      <h4 class="team-names" data-bind = "text: name"></h4>
+                      <p class="text-center"  data-bind = "text: title()"></p>
+                  </div>
+              </div>
+            </div>
+          <!-- /ko -->
+          <!-- ko ifnot: numOfRows() > 1 -->
+            <div data-bind="foreach: employeeCards" class="row">
+              <div data-bind="if:($index() < $root.numOfRows())">
+                  <div class="col-lg-4">
+                      <img data-bind = "attr: {src: avatar}" class="img-circle center-block" alt="A great culture-fit" style="width: 140px; height: 140px;"/>
+                      <h4 class="team-names" data-bind = "text: name"></h4>
+                      <p class="text-center"  data-bind = "text: title()"></p>
+                  </div>
+              </div>
+            </div>
+          <!-- /ko -->
+            
         </div>
         <footer>
             <p class="pull-right"><a href="#">Back to top</a>
             </p>
-            <p>© 2014 <span data-bind="text: companyName"></span> · <a href="#">Privacy</a> · <a href="#">Terms</a>
+            <p>© 2014 Derek Smith · <a href="#">Privacy</a> · <a href="#">Terms</a>
             </p>
         </footer>
     </div>
@@ -92,7 +116,7 @@
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
     <script src="bower_components/knockout/dist/knockout.js"></script>
-    <script src="bower_components/Faker/build/build/faker.js"></script>
+    <script src="bower_components/Faker/faker.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

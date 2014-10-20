@@ -6,7 +6,19 @@ var vm = function () //Main viewModel
 	self.companyName = ko.observable(faker.company.companyName());
 	self.startupProductName = ko.observable(faker.company.startupName());
 	self.tagtoggle = ko.observable(true);
+	self.employeeNum = ko.observable(3);
 	self.employeeCards = ko.observableArray();
+
+	self.numOfRows = ko.computed(function() {
+		self.employeeNum();
+
+		return self.employeeNum() / 2;
+	});
+
+	self.splitRow = function(index) {
+		console.log(index);
+		return (index < self.numOfRows()) ? true : false;
+	};
 	
 	self.tagLine = ko.computed(function() {
 		self.tagtoggle();
@@ -21,6 +33,8 @@ var vm = function () //Main viewModel
 	{
 		var num = num ? num : 3; //***TODO In the future, make team size customizeable?
 
+		self.employeeNum(num);
+
 		for(var i = 0; i<num; i++) 
 		{
 			self.employeeCards.push(new Card());
@@ -34,7 +48,7 @@ var vm = function () //Main viewModel
 		self.tagtoggle.valueHasMutated();
 
 		self.employeeCards.removeAll();
-		self.generateTeam();
+		self.generateTeam(6);
 
 		console.log('Starting over...');
 
