@@ -1,0 +1,10 @@
+{
+  "name": "pointtracker",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass-official": "~3.2.0",
+    "jumbotron-narrow-sass": "./app/styles/jumbotron-narrow.scss",
+    "knockout": "~3.2.0",
+    "Faker": "~2.0.0"
+  }
+}
