@@ -28,6 +28,9 @@ module.exports = function (grunt) {
     // Project settings
     config: config,
 
+    pkg: grunt.file.readJSON('package.json'),
+    ec2: 'private/ec2.json',
+
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
