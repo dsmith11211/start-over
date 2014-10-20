@@ -391,6 +391,7 @@ module.exports = function (grunt) {
 
 
   grunt.loadNpmTasks('grunt-bower-install');
+  grunt.loadNpmTasks('grunt-ec2');
 
 
   grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
